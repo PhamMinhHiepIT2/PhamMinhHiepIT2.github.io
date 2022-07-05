@@ -1,0 +1,556 @@
+I".T
+<h1 id="ducumentation">Ducumentation</h1>
+
+<p>Github: <a href="https://github.com/Renovamen/jekyll-theme-gungnir" target="_blank"><i class="fas fa-link"></i> Renovamen/jekyll-theme-gungnir</a></p>
+
+<p>Derived from <a href="https://github.com/Huxpro/huxpro.github.io" target="_blank">Huxpro/huxpro.github.io</a>. Some of the designs and code are borrowed from other themes, including but not limited to <a href="https://github.com/mashirozx/Sakura/" target="_blank">mashirozx/Sakura</a>, <a href="https://github.com/kitian616/jekyll-TeXt-theme" target="_blank">kitian616/jekyll-TeXt-theme</a>, <a href="https://github.com/Fechin/hexo-theme-diaspora" target="_blank">Fechin/hexo-theme-diaspora</a>, <a href="https://github.com/liuzc/LeaveIt" target="_blank">liuzc/LeaveIt</a>, et al.</p>
+
+<p><strong>Gungnir</strong> is the spear of the god Odin in Norse mythology, made from the wood of the world tree Yggdrasil. It has nothing to do with this theme, but I still use this name.</p>
+
+<p><img src="../img/docs/gungnir.jpg" alt="theme-gungnir" /></p>
+
+<h2 id="installation">Installation</h2>
+
+<p>Clone the project from Github:</p>
+
+<pre><code class="language-bash">git clone https://github.com/Renovamen/jekyll-theme-gungnir.git
+cd jekyll-theme-gungnir
+</code></pre>
+
+<p>To run the theme locally, Ruby and Jekyll should be installed firstly, refer to <a href="https://jekyllrb.com/docs/installation/" target="_blank">here</a> for details. Then you could install the dependencies:</p>
+
+<pre><code class="language-bash">bundle config set path 'vendor/bundle'
+bundle install
+</code></pre>
+
+<p>Then you could start the development server and preview the blog by:</p>
+
+<pre><code class="language-bash">bundle exec jekyll serve --watch
+</code></pre>
+
+<p>To modify the source code of the theme, you may need to install <a href="https://gruntjs.com/" target="_blank">Grunt</a> (for compressing js files):</p>
+
+<pre><code class="language-bash">npm install
+</code></pre>
+
+<p>Then:</p>
+
+<pre><code class="language-bash">npm run dev
+</code></pre>
+
+<h2 id="configuration">Configuration</h2>
+
+<p class="info">All the following options should be configured in <code>_config.yml</code>.</p>
+
+<h3 id="site-settings">Site Settings</h3>
+<pre><code class="language-yaml">title: Renovamen # title of your site
+SEOTitle: Renovamen's blog # SEO title of your site
+description: Hmm, interesting blog. # description of your site
+keyword: "blog, personal website" # keywords of your site
+url: "https://renovamen.ink" # URL of your site
+baseurl: "" # Base URL of your site. If you site is hosted on 'https://renovamen.ink/blog', it should be '/blog'
+avatar: "img/header-avatar.jpeg" # path of the avatar showing on home page
+</code></pre>
+
+<h3 id="theme-style">Theme Style</h3>
+<pre><code class="language-yaml">theme_style: 
+  highlight:  # syntax highlighting theme
+  alert:  # style of alerts
+  post_preview: # style of the post list showing on home page
+</code></pre>
+
+<h4 id="highlight">Highlight</h4>
+
+<p><a href="https://highlightjs.org/" target="_blank">Highlight.js</a> instead of <a href="http://rouge.jneen.net/" target="_blank">Rouge</a> is used as syntax highlighter. The default syntax highlighting theme of this blog looks like this:</p>
+
+<pre><code class="language-python">import food
+
+class Dragon:
+    def __init__(self, happiness):
+        self.happiness = happiness
+    def code(self):
+        """ just code """
+        self.happiness -= 60
+    def eat(self, n)
+        # just eat
+        self.happiness += n * food.size
+
+me = Dragon(100)
+
+while True:
+    me.code()
+    me.eat(10)
+</code></pre>
+
+<p>Click the span in the upper-right corner to make the code block full screen.</p>
+
+<p>The default highlighting theme is <code>dark</code>, you can also switch it to <code>light</code>:</p>
+
+<pre><code class="language-yaml">highlight: # "dark" (default), "light"
+</code></pre>
+
+<p>Highlighting stylesheets could be found <a href="https://github.com/Renovamen/jekyll-theme-gungnir/tree/master/_sass/highlight" target="_blank">here</a>. You can also modify them to create your own theme, or just import the <a href="https://github.com/highlightjs/highlight.js/tree/master/src/styles" target="_blank">stylesheets</a> provided by Highlight.js.</p>
+
+<h4 id="alert">Alert</h4>
+
+<p>Showing alerts in articles is supported, refer to <a href="#alert-1">here</a> for more information about the usages. You can specify the style of alerts:</p>
+
+<pre><code class="language-yaml">alert:  # "flat" (default), "modern"
+</code></pre>
+
+<p>The default style is <code>flat</code>, like <a href="#configuration">this</a>. <code>modern</code> style alerts look like this：</p>
+
+<p><img src="../img/docs/alert-modern.png" alt="alert-modern" /></p>
+
+<h4 id="post-list">Post List</h4>
+
+<p><code>image</code> (default) means showing featured image of each article on home page, while <code>text</code> means showing text only:</p>
+
+<pre><code class="language-yaml">post_preview: # "image" (default), "text"
+</code></pre>
+
+<p><code>image</code>：
+<img src="../img/docs/preview-image.jpg" alt="preview-image" /></p>
+
+<p><code>text</code>：
+<img src="../img/docs/preview-text.jpg" alt="preview-text" /></p>
+
+<h3 id="social-network">Social Network</h3>
+
+<pre><code class="language-yaml">sns:
+  github_username: # Github
+  weibo_username: # Weibo
+  zhihu_username: # Zhihu
+  twitter_username: # Twitter
+  facebook_username: # Facebook
+  linkedin_username:  # Linkedin
+  email_address: # Email Address
+</code></pre>
+
+<p>Links of your social networks will be shown on home page and about page.</p>
+
+<h3 id="navigation">Navigation</h3>
+
+<p>Configuration of the first level menu is like this:</p>
+
+<pre><code class="language-yaml">menus:
+  - title: Home
+    font: fab fa-fort-awesome
+    url: /
+  - title: Archive
+    font: fas fa-archive
+    url: /archive/
+</code></pre>
+
+<p>You should specify the name, URL and icon of each page. <a href="https://fontawesome.com" target="_blank">Font Awesome</a> is used as icon set, you can search for icons <a href="https://fontawesome.com/icons" target="_blank">here</a>.</p>
+
+<p>Use key <code>submenus</code> to add the second level menu:</p>
+
+<pre><code class="language-yaml">menus:
+  - title: About
+    font: fas fa-paw
+    submenus:
+      - title: Me
+        font: fas fa-user-astronaut
+        url: /about/
+      - title: Theme
+        font: fas fa-meteor
+        url: /theme/
+</code></pre>
+
+<h3 id="comment">Comment</h3>
+
+<pre><code class="language-yaml">comment: 
+  provider: # false (default), "disqus", "gitalk", "valine"
+</code></pre>
+
+<p>Disqus, Gitalk and Valine are supported as third party comment systems. You should specify the name of your prefer comment system or use <code>false</code> to disable comments.</p>
+
+<h4 id="disqus">Disqus</h4>
+
+<p>Apply for a <em>shortname</em> on <a href="https://disqus.com/" target="_blank">Disqus</a>, then:</p>
+
+<pre><code class="language-yaml">comment: 
+  provider: disqus
+  disqus_username: # Disqus shortname
+</code></pre>
+
+<h4 id="gitalk">Gitalk</h4>
+
+<p>Register a <a href="https://github.com/settings/applications/new">Github Application</a> and get the Client ID and Client Secret, then:</p>
+
+<pre><code class="language-yaml">comment: 
+  provider: gitalk
+  gitalk:
+    clientID: # Github Application Client ID
+    clientSecret: # Github Application Client Secret
+    repo: # Github repo for storing comments
+    owner: # owners of the above mentioned repo
+    admin: 
+      - admin1
+      - admin2
+      - ...
+</code></pre>
+
+<p>Refer to the <a href="https://github.com/gitalk/gitalk" target="_blank">documentation of Gitalk</a> for more information.</p>
+
+<h4 id="valine">Valine</h4>
+
+<p>Create a new application on <a href="https://leancloud.cn/">Leancloud</a> and get the APP ID and APP Key, then:</p>
+
+<pre><code class="language-yaml">comment: 
+  provider: valine
+  valine:
+    appID: # LeanCloud App ID
+    appKey: # LeanCloud App Key
+</code></pre>
+
+<p>Refer to the <a href="https://valine.js.org/" target="_blank">documentation of Valine</a> for more information.</p>
+
+<h3 id="analytics">Analytics</h3>
+
+<p>Google Analytics and Baidu Tongji are supported as the site analytics tools.</p>
+
+<h4 id="baidu-tongji">Baidu Tongji</h4>
+
+<p>Paste the code offered by <a href="https://tongji.baidu.com/web/welcome/login" target="_blank">Baidu Tongji</a> here:</p>
+
+<pre><code class="language-yaml">analytics:
+  ba_track_id: # your tracking code
+</code></pre>
+
+<h4 id="google-analytics">Google Analytics</h4>
+
+<p>Paste the code offered by <a href="https://tongji.baidu.com/web/welcome/login" target="_blank">Google Analytics</a> here:</p>
+
+<pre><code class="language-yaml">analytics:
+  ga_track_id: 'G-ZYM02DSEHS' # your tracking code
+</code></pre>
+
+<h3 id="cdn">CDN</h3>
+
+<pre><code class="language-yaml">cdn: # "jsdelivr" (default), "bootcdn", "unpkg", "cdnjs"
+</code></pre>
+
+<p><a href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a> is used as the default CDN provider. You can also choose <a href="https://www.bootcdn.cn/" target="_blank">BootCDN</a>, <a href="https://unpkg.com/" target="_blank">unpkg</a> or <a href="https://cdnjs.com/" target="_blank">cdnjs</a> to be your CDN provider. All CDN URLs can be found in <code>_data/cdn.yml</code>.</p>
+
+<h3 id="additional-functions-for-markdown">Additional Functions for Markdown</h3>
+
+<pre><code class="language-yaml">math: 
+    enable: # if to enable math rendering for all articles
+            # false (default), true
+    engine: # specify the math rendering engine
+            # "katex" (default), "mathjax"
+chart: # if to enable Chart.js: false (defaule), true
+mermaid: # if to enable mermaid: false (default), true
+emoji-plus: # if to enable additional emoji: false (default), true
+</code></pre>
+
+<p>Refer to <a href="#additional-functions-for-markdown-1">here</a> for more information.</p>
+
+<h3 id="hitokoto">Hitokoto</h3>
+
+<pre><code class="language-yaml">hitokoto: true # default: false
+</code></pre>
+
+<p>Set <code>hitokoto</code> to <code>true</code> to enable the Hitokoto bubble on home page. The bubble will appear when you hover your mouse cursor over the avatar:</p>
+
+<p><img src="../img/docs/hitokoto-bubble.jpg" alt="Hitokoto Bubble" /></p>
+
+<h2 id="page">Page</h2>
+
+<h3 id="home">Home</h3>
+
+<p>Switching among multiple cover images is supported. The path and the RGB value of the mask of each cover image should be specified in the Front-matter of <code>index.html</code>:</p>
+
+<pre><code class="language-yaml">description: # the sentence you want to show on the home page
+header-img:
+    -   url: # path of the cover image1
+        mask: # RGB value of the mask of the cover image1 (optional), like: rgba(40, 57, 101, .4)
+    -   url: # path of the cover image2
+        mask: # RGB value of the mask of the cover image2 (optional)
+</code></pre>
+
+<p>The <em>mask</em> is the translucent overlay placed on the cover image. It will be helpful when your cover image is so complex that your title can not stand out.</p>
+
+<h3 id="about">About</h3>
+
+<p>Just refer to the <a href="/about" target="_blank">About page</a> and its <a href="https://github.com/Renovamen/jekyll-theme-gungnir/blob/master/about.html" target="_blank">Front-matter</a> of this site.</p>
+
+<h3 id="links">Links</h3>
+
+<p>Just refer to the <a href="/links" target="_blank">Links page</a> and its <a href="https://github.com/Renovamen/jekyll-theme-gungnir/blob/master/links.html" target="_blank">Front-matter</a> of this site. (Repeat *1)</p>
+
+<p>If any of the links’ avatar is not specified, <code>img/links/default.jpg</code> will be shown as the default avatar.</p>
+
+<p>If you want to enable comments in this page, you should enable comments in <code>_config.yml</code> and set <code>comment: true</code> in the Front-matter of this page.</p>
+
+<h2 id="content">Content</h2>
+
+<h3 id="post">Post</h3>
+
+<p>Create your posts (Markdown files) under <code>_posts/</code> directory. The format of their filename should be <code>year-month-day-title.md</code>. Their YAML Front-matter should be like this：</p>
+
+<pre><code class="language-yaml">---
+layout: post
+title: # title
+subtitle: # subtitle
+author: # author's name, defaults to the site's title
+header-img: # path of the cover image
+header-mask: # RGB value of the mask of the cover image, like: rgba(40, 57, 101, .4)
+header-style: text # add this line if you don't want a cover image
+catalog: # if to enable catalog: false (default), true
+math: # if to enable math rendering
+tags: # tags
+  - tag1
+  - tag2
+  - ...
+---
+</code></pre>
+
+<p>It should be noted that, <code>header-img</code> will be shown on both <a href="#post-list">home page</a> and post page. Refer to <a href="#math-rendering">here</a> for the information about the configuration of <code>math</code>.</p>
+
+<h3 id="additional-functions-for-markdown-1">Additional Functions for Markdown</h3>
+
+<h4 id="math-rendering">Math Rendering</h4>
+
+<p><a href="https://github.com/mathjax/MathJax" target="_blank">Mathjax</a> and <a href="https://github.com/KaTeX/KaTeX" target="_blank">Katex</a> are supported for rendering mathematical formulas in articles.</p>
+
+<p>Katex is faster than Mathjax (check it out <a href="https://katex.org/" target="_blank">here</a>), but the number of Tex functions it supports is less than Mathjax (<a href="https://katex.org/docs/supported.html" target="_blank">here</a> is all functions supported by Katex).</p>
+
+<p>Math rendering will only be enabled for the articles with <code>math: true</code> in their Front-matter when <code>math.enable: false</code> is set in <code>_config.yml</code>:</p>
+
+<pre><code class="language-yaml">---
+layout: post
+math: true
+---
+</code></pre>
+
+<p>Otherwise, this function will be enabled for all articles (including <code>post</code> and <code>keynote</code>).</p>
+
+<p>Example：</p>
+
+<p>Inline math: \(E = mc^2\)</p>
+
+<p>Display math:</p>
+
+\[i\hbar\frac{\partial \psi}{\partial t} = \frac{-\hbar^2}{2m} ( \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2} ) \psi + V \psi.\]
+
+<pre><code class="language-plaintext">$$ E = mc^2 $$
+
+$$
+i \hbar \frac{\partial \psi}{\partial t}
+= \frac{-\hbar^2}{2m} ( \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2} ) \psi + V \psi
+$$
+</code></pre>
+
+<h4 id="chart-and-diagram">Chart and Diagram</h4>
+
+<h5 id="chart-chartjs">Chart (Chart.js)</h5>
+
+<p><a href="https://github.com/chartjs/Chart.js" target="_blank">Chart.js</a> is used to create interactive charts in articles. Refer to the <a href="https://www.chartjs.org/docs/latest/" target="_blank">documentation of Chart.js</a> for the methods of creating charts.</p>
+
+<p>Example：</p>
+
+<pre><code class="language-chart">{
+    "type": "bar",
+    "data": {
+        "labels": ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        "datasets": [{
+            "label": "# of Votes",
+            "data": [12, 19, 3, 5, 2, 3],
+            "backgroundColor": [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)"
+            ],
+            "borderColor": [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)"
+            ],
+            "borderWidth": 1
+        }]
+    },
+    "options": {
+        "scales": {
+            "yAxes": [{
+                "ticks": {
+                    "beginAtZero": true
+                }
+            }]
+        }
+    }
+}
+</code></pre>
+
+<pre><code class="json">```chart
+{
+    "type": "bar",
+    "data": {
+        "labels": ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        "datasets": [{
+            "label": "# of Votes",
+            "data": [12, 19, 3, 5, 2, 3],
+            "backgroundColor": [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)"
+            ],
+            "borderColor": [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)"
+            ],
+            "borderWidth": 1
+        }]
+    },
+    "options": {
+        "scales": {
+            "yAxes": [{
+                "ticks": {
+                    "beginAtZero": true
+                }
+            }]
+        }
+    }
+}
+```
+</code></pre>
+
+<p><code class="warning">Note</code>：the <code>key</code> in <code>json</code> should be with <strong>quotes</strong>, or there will be some unexpected errors…</p>
+
+<h5 id="diagram-mermaid">Diagram (mermaid)</h5>
+
+<p><a href="https://github.com/knsv/mermaid" target="_blank">mermaid</a> is used to create diagrams in articles. Refer to the <a href="https://mermaid-js.github.io/mermaid/" target="_blank">documentation of mermaid</a> for the methods of creating diagrams.</p>
+
+<p>Example：</p>
+
+<pre><code class="language-mermaid">sequenceDiagram
+    Alice-&gt;&gt;John: Hello John, how are you?
+    John--&gt;&gt;Alice: Great!
+</code></pre>
+
+<pre><code>```mermaid
+sequenceDiagram
+    Alice-&gt;&gt;John: Hello John, how are you?
+    John--&gt;&gt;Alice: Great!
+```
+</code></pre>
+
+<h4 id="tag">Tag</h4>
+<p><code class="info">info</code></p>
+
+<pre><code class="language-markdown">`info`{:.info}
+</code></pre>
+
+<p><code class="success">success</code></p>
+
+<pre><code class="language-markdown">`success`{:.success}
+</code></pre>
+
+<p><code class="warning">warning</code></p>
+
+<pre><code class="language-markdown">`warning`{:.warning}
+</code></pre>
+
+<p><code class="error">error</code></p>
+
+<pre><code class="language-markdown">`error`{:.error}
+</code></pre>
+
+<h4 id="alert-1">Alert</h4>
+<p class="info">A info alert.</p>
+
+<pre><code class="language-markdown">A info alert.
+{:.info}
+</code></pre>
+
+<p class="success">A success alert.</p>
+
+<pre><code class="language-markdown">A success alert.
+{:.success}
+</code></pre>
+
+<p class="warning">A warning alert.</p>
+
+<pre><code class="language-markdown">A warning alert.
+{:.warning}
+</code></pre>
+
+<p class="error">An error alert.</p>
+
+<pre><code class="language-markdown">An error alert.
+{:.error}
+</code></pre>
+
+<h4 id="emoji">Emoji</h4>
+
+<p><a href="https://github.com/jekyll/jemoji" target="_blank">jemoji</a> is used to generate emojis. This plugin should be installed manually:</p>
+
+<pre><code class="language-bash">gem install jemoji
+</code></pre>
+
+<p><a href="https://pages.github.com/versions/" target="_blank">Here</a> we can know that jemoji has already been installed on Github Pages. Code of all emojis can be found <a href="https://www.webfx.com/tools/emoji-cheat-sheet/" target="_blank">here</a>.</p>
+
+<p>Example:</p>
+
+<p>:smile: :smirk: :racehorse: :wolf:</p>
+
+<pre><code class="language-markdown">:smile: :smirk: :racehorse: :wolf:
+</code></pre>
+
+<h4 id="image-annotation">Image Annotation</h4>
+
+<p><img src="../img/theme.jpg" alt="" /></p>
+
+<p class="desc">This is an image.</p>
+
+<pre><code class="markdown">![](../img/theme.jpg)
+
+    This is an image.
+    {:.desc}
+</code></pre>
+
+<h2 id="libraries">Libraries</h2>
+
+<p>Here are all open source libraries used by this theme.</p>
+
+<h3 id="css">CSS</h3>
+
+<ul>
+  <li><a href="https://github.com/twbs/bootstrap" target="_blank">Bootstrap</a></li>
+  <li><a href="https://github.com/FortAwesome/Font-Awesome" target="_blank">Font Awesome</a></li>
+  <li><a href="https://github.com/l-lin/font-awesome-animation" target="_blank">Font Awesome Animation</a> (animation of icons)</li>
+</ul>
+
+<h3 id="javascript">JavaScript</h3>
+<ul>
+  <li><a href="https://github.com/jquery/jquery" target="_blank">jQuery</a></li>
+  <li><a href="https://github.com/jlmakes/scrollreveal" target="_blank">ScrollReveal</a> (enter animation of the post list (home page) and timeline (about page))</li>
+  <li><a href="https://github.com/tscanlin/tocbot" target="_blank">Tocbot</a> (catalog of articles)</li>
+  <li><a href="https://github.com/bryanbraun/anchorjs/" target="_blank">AnchorJS</a> (anchors of articles)</li>
+  <li><a href="https://github.com/gitalk/gitalk" target="_blank">Gitalk</a></li>
+  <li><a href="https://github.com/xCss/Valine" target="_blank">Valine</a></li>
+  <li><a href="https://github.com/chartjs/Chart.js" target="_blank">Chart.js</a> (<a href="#chart-chartjs">charts</a>)</li>
+  <li><a href="https://github.com/mermaid-js/mermaid" target="_blank">mermaid</a> (<a href="#diagram-mermaid">diagrams</a>)</li>
+  <li><a href="https://github.com/mathjax/MathJax" target="_blank">MathJax</a> (math rendering)</li>
+  <li><a href="https://github.com/KaTeX/KaTeX" target="_blank">Katex</a> (math rendering)</li>
+  <li><a href="https://github.com/highlightjs/highlight.js" target="_blank">Hightlight.js</a> (syntax highlighting)</li>
+  <li><a href="https://github.com/wcoder/highlightjs-line-numbers.js/" target="_blank">hightlight-line-number.js</a> (Highlight.js line numbers plugin)</li>
+  <li><a href="https://github.com/christian-fei/Simple-Jekyll-Search" target="_blank">Simple-Jekyll-Search</a> (search)</li>
+  <li><a href="https://github.com/ftlabs/fastclick" target="_blank">fastclick</a> (remove click delays on mobile browsers)</li>
+</ul>
+:ET
