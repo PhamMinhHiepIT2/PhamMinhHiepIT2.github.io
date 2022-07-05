@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Jekyll version of the blog theme Gungnir.">
+  <meta name="keywords"  content="jekyll, theme, blog, blog theme">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Links - Jekyll theme Gungnir">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="When you are looking at the stars, please put the brightest star shining night sky as my soul.">
+  
+  <meta property="og:image" content="http://localhost:4000img/header-avatar.jpeg">
+  <meta property="og:url" content="http://localhost:4000/links/">
+  <meta property="og:site_name" content="Jekyll theme Gungnir">
+
+  <title>Links - Jekyll theme Gungnir</title>
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="/pwa/manifest.json">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="/img/favicon.svg">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="http://localhost:4000/links/"><!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.2/dist/css/bootstrap.min.css">
+
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500"/>
+
+  <!-- Custom Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Font Awesome Animation -->
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome-animation@0.2.1/dist/font-awesome-animation.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/gungnir.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- ga & ba script hoook -->
+  <script></script><!-- I have compressed all js dependencies into `lib.min.js` using jsDelivr -->
+  <script src="/js/lib.min.js"></script>
+</head>
+
+
+  <!-- hack iOS CSS :active style -->
+  <body ontouchstart="">
+    <!-- Renovamen: add menu button -->
+    <div class="menu-btn-container">
+  <div class="menu-btn-wrapper">
+    <div class="menu-btn">
+      <div class="menu-btn-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="menu-text"></div>
+      <svg class="menu-svg">
+        <circle class="menu-border" cx="50%" cy="50%" r="48%"></circle>
+      </svg>
+    </div>
+    <div class="menu-btn-child-wrapper">
+      <div class="menu-btn-child" id="menu-theme-btn">
+        <span class="fa icon-theme"></span>
+      </div>
+      <div class="menu-btn-child" onclick="smoothTo('bottom')">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="menu-btn-child" onclick="smoothTo('top')">
+        <i class="fas fa-chevron-up"></i>
+      </div>
+      
+      
+      
+      <div class="menu-btn-child" id="menu-navbar-btn">
+        <i class="far fa-window-restore"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // open menu
+  $(".menu-btn").click(function () {
+    $(".menu-btn-container").toggleClass("open");
+  });
+
+  // open navbar
+  $("#menu-navbar-btn").click(function () {
+    mobileNavToggle();
+  });
+
+  // open catalog
+  $("#menu-toc-btn").click(function () {
+    $(".side-catalog").toggleClass("open");
+  });
+
+  // set theme icon in menu
+  function setThemeIcon(newTheme) {
+    const icons = {
+      light: '"\\f185"',
+      dark: '"\\f186"',
+      sepia: '"\\f0f4"',
+    };
+    $("#menu-theme-btn").append(
+      "<style>.icon-theme:before{content:" + icons[newTheme] + "}</style>"
+    );
+  }
+
+  function toggleTheme() {
+    const themes = ["light", "dark", "sepia"];
+    // get current theme
+    const currentTheme = window.__theme;
+    const currentIndex = themes.indexOf(currentTheme);
+    // set next theme
+    const nextIndex = (currentIndex + 1) % themes.length;
+    const nextTheme = themes[nextIndex];
+    window.__setPreferredTheme(nextTheme);
+    setThemeIcon(nextTheme);
+  }
+
+  // change theme
+  $("#menu-theme-btn").click(function () {
+    toggleTheme();
+  });
+</script>
+
+
+    <div class="main-container">
+      <!-- Navigation -->
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <!-- navbar toggle for old mobile menu button (by Hux) -->
+      <!-- <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button> -->
+      <a class="navbar-brand" href="/">$ cd /home/</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div id="huxblog_navbar">
+      <div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          
+          <li>
+            
+            <a href="/" class="faa-parent animated-hover">
+            
+              
+              <i class="fab fa-fort-awesome fa-lg faa-wrench"></i>
+              
+              Home
+            </a>
+            
+          </li>
+          
+          <li>
+            
+            <a class="faa-parent animated-hover">
+            
+              
+              <i class="fas fa-paw fa-lg faa-wrench"></i>
+              
+              About
+            </a>
+            
+            <ul class="sub-menu">
+              
+              <li>
+                <a href="/about/" class="faa-parent animated-hover">
+                <i class="fas fa-user-astronaut fa-lg faa-wrench"></i>
+                Me
+                </a>
+              </li>
+              
+              <li>
+                <a href="/theme/" class="faa-parent animated-hover">
+                <i class="fas fa-meteor fa-lg faa-wrench"></i>
+                Theme
+                </a>
+              </li>
+              
+            </ul>
+            
+          </li>
+          
+          <li>
+            
+            <a href="/archive/" class="faa-parent animated-hover">
+            
+              
+              <i class="fas fa-archive fa-lg faa-wrench"></i>
+              
+              Archive
+            </a>
+            
+          </li>
+          
+          <li>
+            
+            <a href="/links/" class="faa-parent animated-hover">
+            
+              
+              <i class="fas fa-link fa-lg faa-wrench"></i>
+              
+              Links
+            </a>
+            
+          </li>
+          
+
+          <li>
+            <a id="search-btn" class="faa-parent animated-hover">
+              <i class="fas fa-search fa-lg faa-wrench"></i> Search
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+
+<!-- Old Mobile Navbar Script (By Hux) -->
+<!-- <script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body   = document.body;
+  var $toggle = document.querySelector(".navbar-toggle");
+  var $navbar = document.querySelector("#huxblog_navbar");
+  var $collapse = document.querySelector(".navbar-collapse");
+
+  var __HuxNav__ = {
+    close: function() {
+      $navbar.className = " ";
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if($navbar.className.indexOf("in") < 0) {
+          $collapse.style.height = "0px"
+        }
+      },400)
+    },
+    open: function() {
+      $collapse.style.height = "auto"
+      $navbar.className += " in";
+    }
+  }
+
+  // Bind Event
+  $toggle.addEventListener("click", function(e) {
+    if ($navbar.className.indexOf("in") > 0) {
+      __HuxNav__.close()
+    } else {
+      __HuxNav__.open()
+    }
+  })
+
+  /**
+    * Since Fastclick is used to delegate "touchstart" globally
+    * to hack 300ms delay in iOS by performing a fake "click",
+    * Using "e.stopPropagation" to stop "touchstart" event from
+    * $toggle/$collapse will break global delegation.
+    *
+    * Instead, we use a "e.target" filter to prevent handler
+    * added to document close HuxNav.
+    *
+    * Also, we use "click" instead of "touchstart" as compromise
+    */
+  document.addEventListener("click", function(e){
+    if(e.target == $toggle) return;
+    if(e.target.className == "icon-bar") return;
+    __HuxNav__.close();
+  })
+</script> -->
+
+
+      <!-- Borrowed a lot from: https://github.com/mashirozx/Sakura/ -->
+
+<!-- Page Header -->
+
+
+<style type="text/css">
+  header.intro-header{
+    position: relative;
+    background-image: url('/img/links.jpg');
+    background: ;
+  }
+
+  
+  header.intro-header .header-mask{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(97, 80, 73, 0.4);
+  }
+  
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="intro-header" id="intro-header">
+  <div class="header-mask" id="header-mask"></div>
+
+  
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        
+        <div class="site-heading" id="tag-heading">
+        
+          <h1>Links</h1>
+          <span class="subheading">When you are looking at the stars, please put the brightest star shining night sky as my soul.</span>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+
+<div class="links-page container">
+  <div class="link-list">
+    
+
+    
+      
+        <h2 class="section-title" id="me">Me</h2>
+        <ul>
+          
+            <li>
+              <a href="https://renovamen.ink" target="_blank">
+                
+                <img src="/img/links/me.png">
+                <span class="sitename">Renovamen</span>
+                <div class="desc">My blog</div>
+              </a>
+            </li>
+          
+        </ul>
+      
+    
+
+    <hr style="visibility: hidden;">
+
+    
+  </div>
+
+  <!-- Side Catalog Container -->
+  
+</div>
+
+
+      <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <!-- SNS Link -->
+        <!-- 
+
+
+<div class="list-inline text-center">
+
+  
+  <a target="_blank" href="https://github.com/Renovamen">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fab fa-github-alt fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="https://www.linkedin.com/in/xiaohan-zou-55bba0160">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="https://www.facebook.com/renovamen.zou">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="https://twitter.com/renovamen_zxh">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="https://www.zhihu.com/people/chao-neng-gui-su">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fas fa-stack-1x fa-inverse">知</i>
+    </span>
+  </a>
+  
+
+  
+
+  
+  <a href="mailto:renovamenzxh@gmail.com">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="/feed.xml">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+</div>
+ -->
+        <p class="copyright">
+          &copy; <a href="https://github.com/Renovamen" target="_blank">Renovamen</a> 2018-2020
+          <br>
+          Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> & <a href="https://github.com/Renovamen/jekyll-theme-gungnir" target="_blank">Gungnir</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- add dark / light mode switcher -->
+<!-- dark / light detection, borrowed from gridsome.org -->
+<script>
+  (function () {
+    window.__onThemeChange = function () {};
+    function setTheme(newTheme) {
+      window.__theme = newTheme;
+      preferredTheme = newTheme;
+      document.body.setAttribute("data-theme", newTheme);
+      window.__onThemeChange(newTheme);
+      setThemeIcon(newTheme);
+    }
+
+    var preferredTheme;
+    try {
+      preferredTheme = localStorage.getItem("theme");
+    } catch (err) {}
+
+    window.__setPreferredTheme = function (newTheme) {
+      setTheme(newTheme);
+      try {
+        localStorage.setItem("theme", newTheme);
+      } catch (err) {}
+    };
+
+    var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    darkQuery.addListener(function (e) {
+      window.__setPreferredTheme(e.matches ? "dark" : "light");
+    });
+
+    setTheme(preferredTheme || (darkQuery.matches ? "dark" : "light"));
+  })();
+</script>
+<!-- Theme JavaScript -->
+<script src="/js/gungnir/gungnir.min.js"></script>
+
+
+<!-- Service Worker -->
+
+<script src="/js/gungnir/sw-registration.js"></script>
+<script src="/js/gungnir/snackbar.js"></script>
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+  var $nav = document.querySelector("nav");
+  if($nav) FastClick.attach($nav);
+</script>
+
+
+<!-- Google Analytics -->
+
+  <!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYM02DSEHS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-ZYM02DSEHS");
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+  <!-- Baidu Tongji -->
+<script>
+  // dynamic User by Hux
+  var _baId = "00504d7a0bf51278aa92b36e60e830b5";
+
+  // Originial
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?" + _baId;
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+<!-- Multi-Lingual -->
+
+
+    </div>
+
+    <!-- modify styles of navbar on mobile -->
+    <div class="mobile-nav">
+  <div class="mobile-menu-avatar">
+    <div class="avatar-container">
+      <img src="/img/header-avatar.jpeg">
+    </div>
+  </div>
+
+  <p class="mobile-menu-heading">Meow?</p>
+
+  
+
+
+<div class="list-inline text-center">
+
+  
+  <a target="_blank" href="https://github.com/Renovamen">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fab fa-github-alt fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="https://www.linkedin.com/in/xiaohan-zou-55bba0160">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="https://www.facebook.com/renovamen.zou">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="https://twitter.com/renovamen_zxh">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="https://www.zhihu.com/people/chao-neng-gui-su">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fas fa-stack-1x fa-inverse">知</i>
+    </span>
+  </a>
+  
+
+  
+
+  
+  <a href="mailto:renovamenzxh@gmail.com">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+
+  
+  <a target="_blank" href="/feed.xml">
+    <span class="fa-stack fa-lg">
+      <i class="fas fa-circle fa-stack-2x"></i>
+      <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+    </span>
+  </a>
+  
+</div>
+
+  <ul>
+    
+    <li>
+      
+      <a href="/" class="faa-parent animated-hover">
+      
+        
+        <i class="fab fa-fort-awesome fa-lg faa-wrench"></i>
+        
+        Home
+      </a>
+
+      
+    </li>
+    
+    <li>
+      
+      <a class="faa-parent animated-hover">
+      
+        
+        <i class="fas fa-paw fa-lg faa-wrench"></i>
+        
+        About
+      </a>
+
+      
+      <ul class="sub-menu">
+        
+        <li>
+          <a href="/about/" class="faa-parent animated-hover">
+          <i class="fas fa-user-astronaut fa-lg faa-wrench"></i>
+          Me
+          </a>
+        </li>
+        
+        <li>
+          <a href="/theme/" class="faa-parent animated-hover">
+          <i class="fas fa-meteor fa-lg faa-wrench"></i>
+          Theme
+          </a>
+        </li>
+        
+      </ul>
+      
+    </li>
+    
+    <li>
+      
+      <a href="/archive/" class="faa-parent animated-hover">
+      
+        
+        <i class="fas fa-archive fa-lg faa-wrench"></i>
+        
+        Archive
+      </a>
+
+      
+    </li>
+    
+    <li>
+      
+      <a href="/links/" class="faa-parent animated-hover">
+      
+        
+        <i class="fas fa-link fa-lg faa-wrench"></i>
+        
+        Links
+      </a>
+
+      
+    </li>
+    
+
+    <li>
+      <a id="mobile-search-btn" class="faa-parent animated-hover">
+        <i class="fas fa-search fa-lg faa-wrench"></i> Search
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+    <!-- support search -->
+    <div id="search" class="search-page">
+  <i class="search-close fas fa-chevron-down"></i>
+  <p class="search-title text-center"></p>
+
+  <div class="input">
+    <input
+      id="search-input"
+      type="text"
+      class="search-field"
+      placeholder="Just search ..."
+      style="background-color: transparent"
+    />
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+<script>
+  // simple-jekyll-search.js
+  SimpleJekyllSearch({
+    searchInput: document.getElementById("search-input"),
+    resultsContainer: document.getElementById("search-results"),
+    json: "/search.json",
+    searchResultTemplate:
+      '<li class="result-item item"><a href="{url}" title="{desc}"><div class="result-item-title">{title}</div><div class="result-item-subtitle">{subtitle}</div></a></li>',
+    noResultsText:
+      '<li class="result-item item"><div class="result-item-title">No Results</div></li>',
+    limit: 20,
+    fuzzy: false,
+  });
+
+  function autoFocus() {
+    setTimeout(function () {
+      document.querySelector(".search-page input").focus();
+    }, 400);
+  }
+
+  // open search page
+  $("#search-btn").click(function () {
+    $(".search-page").toggleClass("open");
+    autoFocus();
+  });
+
+  // open search page (mobile)
+  $("#mobile-search-btn").click(function () {
+    $(".search-page").toggleClass("open");
+    autoFocus();
+  });
+
+  // close search page
+  $(".search-close").click(function () {
+    $(".search-page").toggleClass("open");
+  });
+</script>
+
+
+  <!-- Migrate from head to bottom, no longer block render and still work -->
+  </body>
+</html>
