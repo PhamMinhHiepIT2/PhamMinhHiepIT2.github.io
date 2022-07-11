@@ -5,19 +5,35 @@
     <description>Welcome to my personal blog.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sat, 09 Jul 2022 10:47:21 +0700</pubDate>
-    <lastBuildDate>Sat, 09 Jul 2022 10:47:21 +0700</lastBuildDate>
+    <pubDate>Mon, 11 Jul 2022 21:06:44 +0700</pubDate>
+    <lastBuildDate>Mon, 11 Jul 2022 21:06:44 +0700</lastBuildDate>
     <generator>Jekyll v4.2.2</generator>
     
       <item>
-        <title>Hello Word</title>
+        <title>Install VPN server on AWS EC2</title>
+        <subtitle></subtitle>
+        <description>&lt;h1 id=&quot;how-to-access-to-ec2-with-private-ip-using-pritunl&quot;&gt;How to access to EC2 with private IP using Pritunl?&lt;/h1&gt;
+
+&lt;h2 id=&quot;install-pritunl&quot;&gt;Install Pritunl&lt;/h2&gt;
+&lt;p&gt;Prepare a EC2 machine with sec...</description>
+        <pubDate>Mon, 11 Jul 2022 00:00:00 +0700</pubDate>
+        <link>http://localhost:4000/2022/07/11/setup-vpn-aws-ec2/</link>
+        <guid isPermaLink="true">http://localhost:4000/2022/07/11/setup-vpn-aws-ec2/</guid>
+        
+        <category>cloud</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Template for docs</title>
         <subtitle>Welcome to Jekyll Theme Gungnir</subtitle>
         <description>&lt;h2 id=&quot;paragraph&quot;&gt;Paragraph&lt;/h2&gt;
 
 &lt;p&gt;A well-known scientist (some say it was Bertrand Russell) once gave a public lecture on astronomy. He described how the earth orbits around the sun and how the...</description>
         <pubDate>Wed, 07 Oct 2020 00:00:00 +0700</pubDate>
-        <link>http://localhost:4000/2020/10/07/github-hello-word/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020/10/07/github-hello-word/</guid>
+        <link>http://localhost:4000/2020/10/07/template/</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/10/07/template/</guid>
         
         <category>摸鱼</category>
         

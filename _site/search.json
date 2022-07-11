@@ -1,10 +1,18 @@
 [
   
     {
-      "title"    : "Hello Word",
+      "title"    : "Install VPN server on AWS EC2",
+      "subtitle" : "",
+      "tags"     : "cloud",
+      "url"      : "/2022/07/11/setup-vpn-aws-ec2/",
+      "date"     : "2022-07-11 00:00:00 +0700"
+    } ,
+  
+    {
+      "title"    : "Template for docs",
       "subtitle" : "Welcome to Jekyll Theme Gungnir",
       "tags"     : "摸鱼",
-      "url"      : "/2020/10/07/github-hello-word/",
+      "url"      : "/2020/10/07/template/",
       "date"     : "2020-10-07 00:00:00 +0700"
     } 
   
