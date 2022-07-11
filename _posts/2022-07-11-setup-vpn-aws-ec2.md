@@ -80,3 +80,7 @@ After set up successfully, create vpn user and import profile to VPN client, suc
 Configure Inbound rule of Security Group:
 
 ![Configure security group](/img/in-post/2022-07-11/security-group.png)
+
+Remove default server 0.0.0.0/0, replace by your private subnet.
+
+![Config server](/img/in-post/2022-07-11/config-server.png)
