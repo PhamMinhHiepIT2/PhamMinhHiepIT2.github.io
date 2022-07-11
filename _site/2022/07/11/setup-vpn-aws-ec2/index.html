@@ -10,16 +10,24 @@
   <meta name="theme-color" content="#000000">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Personal blog">
+  <meta property="og:title" content="Install VPN server on AWS EC2 - Personal blog">
   
-  <meta property="og:type" content="website">
-  <meta property="og:description" content="Welcome to my personal blog.">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="How to access to EC2 with private IP using Pritunl?
+">
+  
+  <meta property="article:published_time" content="2022-07-11T00:00:00Z">
+  
+  
+  
+  <meta property="article:tag" content="cloud">
+  
   
   <meta property="og:image" content="http://localhost:4000img/header-avatar.jpeg">
-  <meta property="og:url" content="http://localhost:4000/">
+  <meta property="og:url" content="http://localhost:4000/2022/07/11/setup-vpn-aws-ec2/">
   <meta property="og:site_name" content="Personal blog">
 
-  <title>Personal blog</title>
+  <title>Install VPN server on AWS EC2 - Personal blog</title>
 
   <!-- Web App Manifest -->
   <link rel="manifest" href="/pwa/manifest.json">
@@ -28,7 +36,7 @@
   <link rel="shortcut icon" href="/img/favicon.svg">
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="http://localhost:4000/"><!-- Bootstrap Core CSS -->
+  <link rel="canonical" href="http://localhost:4000/2022/07/11/setup-vpn-aws-ec2/"><!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.2/dist/css/bootstrap.min.css">
 
   <!-- Fonts -->
@@ -83,6 +91,12 @@
       <div class="menu-btn-child" onclick="smoothTo('top')">
         <i class="fas fa-chevron-up"></i>
       </div>
+      
+      
+      <div class="menu-btn-child" id="menu-toc-btn">
+        <i class="fas fa-list-ul"></i>
+      </div>
+      
       
       <div class="menu-btn-child" id="menu-navbar-btn">
         <i class="far fa-window-restore"></i>
@@ -141,7 +155,7 @@
     <div class="main-container">
       <!-- Navigation -->
 
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top invert">
 
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -296,36 +310,19 @@
 </script> -->
 
 
-      <!-- Page Header -->
+      <!-- Image to hack wechat -->
+<!-- <img src="/img/in-post/2022-07-11/setup-vpn.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
 
 
 <style type="text/css">
   header.intro-header{
     position: relative;
-    height: 100vh;
-    background-image: url('/img/home-bg/1.jpg');
+    background-image: url('/img/in-post/2022-07-11/setup-vpn.jpg');
     background: ;
   }
 
-  @media only screen and (max-width: 1023px){
-    header.intro-header{
-      height: auto;
-    }
-  }
-
-  @media only screen and (min-width: 1024px) {
-    header.intro-header{
-      background-attachment: fixed;
-    }
-  }
-
-  
-  header.intro-header .header-mask{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: rgba(40, 57, 101, .4);
-  }
   
 </style>
 
@@ -335,121 +332,26 @@
 
 
 
+<header class="intro-header style-text">
 
-
-
-
-<header class="intro-header" id="intro-header">
-  <div class="header-mask" id="header-mask"></div>
-
+  <div class="header-mask"></div>
   
-  <a class="img-prev" onclick="changeImage(-1)">
-    <i class="fas fa-chevron-left"></i>
-  </a>
-  <a class="img-next" onclick="changeImage(1)">
-    <i class="fas fa-chevron-right"></i>
-  </a>
-
-  <div class="headertop-down faa-float animated">
-    <a onclick="smoothTo('#container')">
-      <i class="fas fa-chevron-down" ></i>
-    </a>
-  </div>
-
-  <div class="header-avatar">
-    <a href="" >
-      <img src="/img/header-avatar.jpeg">
-    </a>
-  </div>
-
-  
-  <div class="header-bubble">
-    <div class="bubble">
-      <p class="bubble-words" id="hitokoto">正在加载一言...</p>
-    </div>
-    <div class="bubble-tile"></div>
-  </div>
-  
-
-  <!-- Only shows on desktop -->
-  <div class="header-info">
-    <div class="header-info-back">
-      <div class="site-heading home-site-heading">
-        <h1>Pham Minh Hiep</h1>
-        <span class="subheading">Welcome to my personal blog.</span>
-      </div>
-    </div>
-    <!-- SNS Link -->
-    
-
-
-<div class="list-inline text-center">
-
-  
-  <a target="_blank" href="https://github.com/PhamMinhHiepIT2">
-    <span class="fa-stack fa-lg">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fab fa-github-alt fa-stack-1x fa-inverse"></i>
-    </span>
-  </a>
-  
-
-  
-  <a target="_blank" href="https://www.linkedin.com/in/pham-minh-hiep-a73837122">
-    <span class="fa-stack fa-lg">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
-    </span>
-  </a>
-  
-
-  
-  <a target="_blank" href="https://www.facebook.com/hiep.phamminhhiep.9">
-    <span class="fa-stack fa-lg">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-    </span>
-  </a>
-  
-
-  
-
-  
-
-  
-
-  
-  <a href="mailto:phamhiep13122k@gmail.com">
-    <span class="fa-stack fa-lg">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
-    </span>
-  </a>
-  
-
-  
-  <a target="_blank" href="/feed.xml">
-    <span class="fa-stack fa-lg">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-    </span>
-  </a>
-  
-</div>
-
-  </div>
-  
-
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        
-        <!-- Only shows on mobile -->
-        <div class="site-heading phone-site-heading">
-          <h1>Pham Minh Hiep</h1>
-          <span class="subheading">Welcome to my personal blog.</span>
+        <div class="post-heading">
+          <div class="tags">
+            
+            <a class="tag" href="/archive/?tag=cloud" title="cloud">cloud</a>
+            
+          </div>
+          <h1>Install VPN server on AWS EC2</h1>
+          
+          <h2 class="subheading"></h2>
+          
+          <span class="meta">Posted by Pham Minh Hiep on July 11, 2022</span>
+          
         </div>
-        
       </div>
     </div>
   </div>
@@ -458,131 +360,358 @@
 
 
 
-<script>
-  // header image switcher
-  function changeImage(n) {
-    headerImgList = '[{"url"=>"img/home-bg/1.jpg", "mask"=>"rgba(40, 57, 101, .4)"}{"url"=>"img/home-bg/2.jpg", "mask"=>"rgba(31, 64, 87, .2)"}{"url"=>"img/home-bg/3.jpg", "mask"=>"rgba(68, 74, 83, .1)"}{"url"=>"img/home-bg/4.jpg", "mask"=>"rgba(19, 75, 50, .2)"}]'.replace(/=>/g,":").replace(/}{/g,"},{");
-    headerImgList = $.parseJSON(headerImgList);
-    len = headerImgList.length
 
-    introHeader = document.getElementById("intro-header");
-    curImgURL = getComputedStyle(introHeader, null).backgroundImage;
 
-    for(let i = 0; i < len; i++) {
-      if(curImgURL.indexOf(headerImgList[i].url) != -1) {
-        newImg = headerImgList[(i + n + len) % len]
-        $(".intro-header").css("background-image", 'url("/' + newImg.url + '")');
 
-        if(newImg.mask) $(".header-mask").css("background", newImg.mask);
-        else $(".header-mask").css("background", "rgb(0, 0, 0, 0)");
-      }
+
+
+
+
+
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
+        <!-- Multi-Lingual -->
+        
+
+        <h1 id="how-to-access-to-ec2-with-private-ip-using-pritunl">How to access to EC2 with private IP using Pritunl?</h1>
+
+<h2 id="install-pritunl">Install Pritunl</h2>
+<p>Prepare a EC2 machine with security group, key pair to authenticate when SSH, VPC, Public subnet, target group.
+Bootstrap script below:</p>
+
+<pre><code class="language-bash">#!/bin/bash
+sudo apt update -y
+sudo apt upgrade -y
+echo "deb http://repo.pritunl.com/stable/apt bionic main" | sudo tee /etc/apt/sources.list.d/pritunl.list
+echo "deb https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+sudo apt update -y
+sudo apt install pritunl mongodb-server -y
+sudo systemctl start pritunl mongodb
+sudo systemctl enable pritunl mongodb
+sudo sh -c 'echo "* hard nofile 64000" &gt;&gt; /etc/security/limits.conf'
+sudo sh -c 'echo "* soft nofile 64000" &gt;&gt; /etc/security/limits.conf'
+sudo sh -c 'echo "root hard nofile 64000" &gt;&gt; /etc/security/limits.conf'
+sudo sh -c 'echo "root soft nofile 64000" &gt;&gt; /etc/security/limits.conf'
+</code></pre>
+
+<p>This script is run on Ubuntu 18.04. If you have any problem with python ($PYTHONHOME or $PYTHONPATH), you can try with script below:</p>
+
+<pre><code class="language-bash">#!/bin/bash
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get install curl gnupg2 wget unzip -y
+curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+sudo apt-get update
+sudo apt-get install mongodb-server -y
+sudo systemctl start mongodb
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv E162F504A20CDF15827F718D4B7C549A058F8B6B
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+echo "deb http://repo.pritunl.com/stable/apt focal main" | sudo tee /etc/apt/sources.list.d/pritunl.list
+sudo apt-get update
+sudo apt-get install pritunl -y
+sudo sudo systemctl start pritunl
+sudo systemctl enable pritunl mongodb
+</code></pre>
+
+<h2 id="configure-pritunl-server-on-ec2-instance">Configure Pritunl server on EC2 instance</h2>
+<p>After installing Pritunl completely, access Pritunl Web UI via URL: <b>https://PUBLIC_IP_EC2_MACHINE</b></p>
+
+<p>Connecting to a Pritunl vpn server follow this docs: <a href="https://docs.pritunl.com/docs/connecting">Connecting to Pritunl vpn server</a></p>
+
+<h2 id="config-load-balancer">Config Load Balancer</h2>
+<p>If you want to assign domain name for Pritunl vpn server Web UI, you can config load balancer:</p>
+
+<pre><code class="language-bash">sudo pritunl set app.reverse_proxy true
+sudo pritunl set app.redirect_server false
+sudo pritunl set app.server_ssl false
+sudo pritunl set app.server_port 80
+</code></pre>
+
+<p>Pritunl document: <a href="https://docs.pritunl.com/docs/load-balancing">Load balancing</a></p>
+
+<h2 id="create-vpn-user">Create VPN user</h2>
+
+<p>After set up successfully, create vpn user and import profile to VPN client, such as OpenVPN, Pritunl,… then try it <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20"></p>
+
+<h2 id="some-notes">Some notes</h2>
+
+<p>Configure Inbound rule of Security Group:</p>
+
+<p><img src="/img/in-post/2022-07-11/security-group.png" alt="Configure security group"></p>
+
+
+        <hr style="visibility: hidden;">
+        <ul class="pager">
+          
+          <li class="previous">
+            <a href="/2020/10/07/template/" data-toggle="tooltip" data-placement="top" title="Template for docs">
+              Previous<br>
+              <span>Template for docs</span>
+            </a>
+          </li>
+          
+
+          
+        </ul>
+        <hr style="visibility: hidden;">
+
+        <!------------ 今日诗词: https://www.jinrishici.com/ ------------>
+<section class="author-profile">
+  <div class="info">
+    <div class="avatar">
+      <img src="/img/header-avatar.jpeg">
+    </div>
+    <h1>Pham Minh Hiep</h1>
+  </div>
+  <span>
+    <a href="https://www.jinrishici.com/" target="_blank">
+      <i class="fas fa-pencil-alt"></i>
+    </a>
+    <p id="poem-item">作诗中...</p>
+    <br>
+    <p id="poem-info"></p>
+  </span>
+</section>
+
+<script type="text/javascript">
+  // async load function
+  function async(u, c) {
+    var d = document,
+      t = "script",
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener(
+        "load",
+        function (e) {
+          c(null, e);
+        },
+        false
+      );
     }
+    s.parentNode.insertBefore(o, s);
   }
+  async("https://sdk.jinrishici.com/v2/browser/jinrishici.js", function () {
+    jinrishici.load(function (result) {
+      var poem = document.querySelector("#poem-item");
+      var info = document.querySelector("#poem-info");
 
-  // fade out while scrolling
-  $(window).scroll(function(){
-    $(".img-prev, .img-next, .headertop-down, .header-avatar, .header-bubble, .header-info").css({
-      "opacity": 1 - $(this).scrollTop() * 1.2 / $(this).height(),
-    })
-  })
-</script>
-
-
-<!-- Hitokoto API （一言）-->
-<script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
-
-
-
-
-
-<!-- Main Content -->
-<div class="container" id="container">
-	<div class="row">
-    <!-- PostList Container -->
-    
-    <div class="postlist-container">
-    
-      
-
-    <!--
-      Renoamen: support displaying images on homepage
-      Borrowed a lot from: https://github.com/Fechin/hexo-theme-diaspora
-    -->
-    
-    <div class="post-preview-img">
-      <a href="/2022/07/11/setup-vpn-aws-ec2/">
-          <img src="/img/in-post/2022-07-11/setup-vpn.jpg" class="cover">
-      </a>
-      <div class="else">
-        <p class="post-meta">July 11, 2022</p>
-        <a href="/2022/07/11/setup-vpn-aws-ec2/">
-          <h2 class="post-title">Install VPN server on AWS EC2</h2>
-          
-        </a>
-        <p class="post-content-preview">
-          
-            How to access to EC2 with private IP using Pritunl?
-
-Install Pritunl
-Prepare a EC2 machine with s...
-          
-        </p>
-      </div>
-    </div>
-
-    
-
-
-
-    <!--
-      Renoamen: support displaying images on homepage
-      Borrowed a lot from: https://github.com/Fechin/hexo-theme-diaspora
-    -->
-    
-    <div class="post-preview-img">
-      <a href="/2020/10/07/template/">
-          <img src="/img/in-post/2020-10-07/header.jpg" class="cover">
-      </a>
-      <div class="else">
-        <p class="post-meta">October 7, 2020</p>
-        <a href="/2020/10/07/template/">
-          <h2 class="post-title">Template for docs</h2>
-          
-          <h3 class="post-subtitle">Welcome to Jekyll Theme Gungnir</h3>
-          
-        </a>
-        <p class="post-content-preview">
-          
-            Paragraph
-
-A well-known scientist (some say it was Bertrand Russell) once gave a public lecture o...
-          
-        </p>
-      </div>
-    </div>
-
-    
-
-
-
-<!-- Pager -->
-
-
-
-
-<script>
-  // 文章上浮效果
-  window.sr = ScrollReveal();
-  sr.reveal(".post-preview-img", {
-    duration: 700,
-    distance: "100px"
+      if (result.status === "success") {
+        var data = result.data;
+        poem.innerHTML = data.content;
+        info.innerHTML =
+          "【" +
+          data.origin.dynasty +
+          "】" +
+          data.origin.author +
+          "《" +
+          data.origin.title +
+          "》";
+      }
+    });
   });
 </script>
 
 
-    </div>
-	</div>
+        
+          
+<!----------------- Gitalk ----------------->
+<div class="comment">
+  <div id="gitalk-container"></div>
 </div>
+<script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: "faf464da633b08ff5317",
+    clientSecret: "402324fc860894e5fcba6320fddbddd1ec7f5644",
+    repo: "gitalk-comments",
+    owner: "This-is-an-Apple",
+    admin: ['Renovamen', 'This-is-an-Apple'],
+    id: md5(location.pathname),
+    distractionFreeMode: false
+  });
+  gitalk.render("gitalk-container");
+</script>
+
+
+
+
+        
+      </div>
+
+      <!-- Side Catalog Container -->
+      
+        <!-- Side Catalog Container -->
+<div class="col-lg-2 col-lg-offset-0 sidebar-container catalog-container">
+  <div class="side-catalog">
+    <hr class="hidden-sm hidden-xs">
+    <h5>
+      <a class="catalog-toggle" href="#">CATALOG</a>
+    </h5>
+    <ul class="catalog-body"></ul>
+  </div>
+</div>
+<link href="https://cdn.jsdelivr.net/npm/tocbot@4.10.0/dist/tocbot.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+  function generateCatalog(selector) {
+    // links page
+    if ("post" == "links") {
+      _containerSelector = "div.link-list";
+    }
+    // interop with multilangual
+    else {
+      if ("" == "true") {
+        _containerSelector = "div.post-container.active";
+      } else {
+        _containerSelector = "div.post-container";
+      }
+    }
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: selector,
+      // Where to grab the headings to build the table of contents.
+      contentSelector: _containerSelector,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: "h2, h3, h4, h5, h6",
+    });
+    return true;
+  }
+
+  generateCatalog(".catalog-body");
+
+  // toggle side catalog
+  $(".catalog-toggle").click(function (e) {
+    e.preventDefault();
+    $(".side-catalog").toggleClass("fold");
+  });
+</script>
+
+      
+    </div>
+  </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+
+<script>
+  $("script[type='math/tex']").replaceWith(function () {
+    var tex = $(this).text();
+    return katex.renderToString(tex, { displayMode: false });
+  });
+
+  $("script[type='math/tex; mode=display']").replaceWith(function () {
+    var tex = $(this).html();
+    return katex.renderToString(tex.replace(/%.*/g, ""), { displayMode: true });
+  });
+</script>
+
+  
+
+
+<!-- Renovamen: add support for chart and mermaid -->
+
+  <!-- Borrowed from: https://github.com/kitian616/jekyll-TeXt-theme -->
+<!-- Chart.js: https://www.chartjs.org/docs/latest/ -->
+<script>
+  var $canvas = null,
+    $this = null,
+    _ctx = null,
+    _text = "";
+  $(".language-chart").each(function () {
+    $this = $(this);
+    $canvas = $("<canvas></canvas>");
+    _text = $this.text();
+    $this.text("").append($canvas);
+    _ctx = $canvas.get(0).getContext("2d");
+    _ctx &&
+      _text &&
+      new Chart(_ctx, JSON.parse(_text)) &&
+      $this.attr("data-processed", true);
+  });
+
+  $(".language-chart").parent().css({
+    "background-color": "transparent",
+    border: "none",
+  });
+</script>
+
+
+
+
+  <!-- Borrowed from: https://github.com/kitian616/jekyll-TeXt-theme -->
+<!-- mermaid.js: https://mermaid-js.github.io/mermaid/ -->
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+  });
+  mermaid.init(undefined, ".language-mermaid");
+
+  $(".language-mermaid").parent().css({
+    "background-color": "transparent",
+    border: "none",
+  });
+</script>
+
+
+
+<!-- Renovamen: add support for enhancement emoji -->
+
+  <script>
+  $(".emoji-plus").each(function () {
+    let $this = $(this);
+    const imgURL = "/img/emoji/bilitv/" + $this.text() + ".gif";
+    const $img = $(
+      '<img class="emoji-plus" src="' +
+        imgURL +
+        '" height="30" width="30">'
+    );
+    $this.replaceWith($img);
+  });
+</script>
+
+
+
+
+  <!-- anchor.js: http://bryanbraun.github.io/anchorjs/ -->
+<script>
+  anchors.options = {
+    visible: "always",
+    placement: "right",
+    icon: "#",
+  };
+  anchors
+    .add()
+    .remove(".intro-header h1")
+    .remove(".subheading")
+    .remove(".sidebar-container h5");
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+
+
 
 
       <!-- Footer -->
@@ -649,9 +778,10 @@ A well-known scientist (some say it was Bertrand Russell) once gave a public lec
 </div>
  -->
         <p class="copyright">
-          &copy; <a href="https://github.com/PhamMinhHiepIT2" target="_blank">Pham Minh Hiep</a> 2022
+          © <a href="https://github.com/PhamMinhHiepIT2" target="_blank">Pham Minh Hiep</a> 2022
           <br>
-      </div>
+      </p>
+</div>
     </div>
   </div>
 </footer>
@@ -907,13 +1037,7 @@ A well-known scientist (some say it was Bertrand Russell) once gave a public lec
   <p class="search-title text-center"></p>
 
   <div class="input">
-    <input
-      id="search-input"
-      type="text"
-      class="search-field"
-      placeholder="Just search ..."
-      style="background-color: transparent"
-    />
+    <input id="search-input" type="text" class="search-field" placeholder="Just search ..." style="background-color: transparent">
   </div>
   <div id="search-results" class="search-results"></div>
 </div>
