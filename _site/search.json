@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "Setup Kubernetes cluster with Ansible",
+      "subtitle" : "",
+      "tags"     : "cloud",
+      "url"      : "/2022/07/14/setup-kubernetes-with-ansible/",
+      "date"     : "2022-07-14 00:00:00 +0700"
+    } ,
+  
+    {
       "title"    : "Setup Kubernetes cluster without Ansible",
       "subtitle" : "",
       "tags"     : "cloud",

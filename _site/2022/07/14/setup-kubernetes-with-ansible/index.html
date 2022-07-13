@@ -10,23 +10,24 @@
   <meta name="theme-color" content="#000000">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="VinHR - Personal blog">
+  <meta property="og:title" content="Setup Kubernetes cluster with Ansible - Personal blog">
   
   <meta property="og:type" content="article">
-  <meta property="og:description" content="This is a breakthough product of Vantix - the first company I worked.
-VinHR is the first IoT and AI solution that enhances labor businesses productivity and empowers the workforce.
+  <meta property="og:description" content="With steps same as previous docs: Setup kubernetes without Ansible, we can automatically configure k8s cluster.
 ">
   
-  <meta property="article:published_time" content="2022-07-13T23:58:20Z">
+  <meta property="article:published_time" content="2022-07-14T00:00:00Z">
   
   
+  
+  <meta property="article:tag" content="cloud">
   
   
   <meta property="og:image" content="http://localhost:4000img/header-avatar.jpeg">
-  <meta property="og:url" content="http://localhost:4000/projects/vantix-vinhr/">
+  <meta property="og:url" content="http://localhost:4000/2022/07/14/setup-kubernetes-with-ansible/">
   <meta property="og:site_name" content="Personal blog">
 
-  <title>VinHR - Personal blog</title>
+  <title>Setup Kubernetes cluster with Ansible - Personal blog</title>
 
   <!-- Web App Manifest -->
   <link rel="manifest" href="/pwa/manifest.json">
@@ -35,7 +36,7 @@ VinHR is the first IoT and AI solution that enhances labor businesses productivi
   <link rel="shortcut icon" href="/img/favicon.svg">
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="http://localhost:4000/projects/vantix-vinhr/"><!-- Bootstrap Core CSS -->
+  <link rel="canonical" href="http://localhost:4000/2022/07/14/setup-kubernetes-with-ansible/"><!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.2/dist/css/bootstrap.min.css">
 
   <!-- Fonts -->
@@ -91,6 +92,10 @@ VinHR is the first IoT and AI solution that enhances labor businesses productivi
         <i class="fas fa-chevron-up"></i>
       </div>
       
+      
+      <div class="menu-btn-child" id="menu-toc-btn">
+        <i class="fas fa-list-ul"></i>
+      </div>
       
       
       <div class="menu-btn-child" id="menu-navbar-btn">
@@ -306,7 +311,7 @@ VinHR is the first IoT and AI solution that enhances labor businesses productivi
 
 
       <!-- Image to hack wechat -->
-<!-- <img src="/" width="0" height="0"> -->
+<!-- <img src="/img/in-post/2022-07-14/kubernetes-ansible.jpeg" width="0" height="0"> -->
 
 <!-- Post Header -->
 
@@ -314,7 +319,7 @@ VinHR is the first IoT and AI solution that enhances labor businesses productivi
 <style type="text/css">
   header.intro-header{
     position: relative;
-    background-image: url('/');
+    background-image: url('/img/in-post/2022-07-14/kubernetes-ansible.jpeg');
     background: ;
   }
 
@@ -337,12 +342,14 @@ VinHR is the first IoT and AI solution that enhances labor businesses productivi
         <div class="post-heading">
           <div class="tags">
             
+            <a class="tag" href="/archive/?tag=cloud" title="cloud">cloud</a>
+            
           </div>
-          <h1>VinHR</h1>
+          <h1>Setup Kubernetes cluster with Ansible</h1>
           
           <h2 class="subheading"></h2>
           
-          <span class="meta">Posted by Pham Minh Hiep on July 13, 2022</span>
+          <span class="meta">Posted by Pham Minh Hiep on July 14, 2022</span>
           
         </div>
       </div>
@@ -370,10 +377,9 @@ VinHR is the first IoT and AI solution that enhances labor businesses productivi
         <!-- Multi-Lingual -->
         
 
-        <p>This is a breakthough product of Vantix - the first company I worked.
-VinHR is the first IoT and AI solution that enhances labor businesses productivity and empowers the workforce.</p>
+        <p>With steps same as previous docs: <a href="2022-07-13-setup-kubernetes-cluster-without-ansible.md">Setup kubernetes without Ansible</a>, we can automatically configure k8s cluster.</p>
 
-<p>Please follow this URL to discover it: https://www.vantixinc.com.vn/en/solution</p>
+<p>Please checkout git repository: <a href="https://github.com/PhamMinhHiepIT2/Setup-Kubernetes-Cluster-Ansible">Setup kubernetes cluster with Ansible</a></p>
 
 
         <hr style="visibility: hidden;">
@@ -381,29 +387,17 @@ VinHR is the first IoT and AI solution that enhances labor businesses productivi
           
           <li class="previous">
             <a
-              href="/projects/vantix-data-analysis-tools-vf35/"
+              href="/2022/07/13/setup-kubernetes-cluster-without-ansible/"
               data-toggle="tooltip"
               data-placement="top"
-              title="Data Analysis Tool for VF35, VF36 Car"
+              title="Setup Kubernetes cluster without Ansible"
             >
               Previous<br>
-              <span>Data Analysis Tool for VF35, VF36 Car</span>
+              <span>Setup Kubernetes cluster without Ansible</span>
             </a>
           </li>
           
 
-          
-          <li class="next">
-            <a
-              href="/projects/vinbdi-vinbase-chatbot/"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Vinbase Chatbot"
-            >
-              Next<br>
-              <span>Vinbase Chatbot</span>
-            </a>
-          </li>
           
         </ul>
         <hr style="visibility: hidden;">
@@ -491,6 +485,53 @@ VinHR is the first IoT and AI solution that enhances labor businesses productivi
       </div>
 
       <!-- Side Catalog Container -->
+      
+        <!-- Side Catalog Container -->
+<div class="col-lg-2 col-lg-offset-0 sidebar-container catalog-container">
+  <div class="side-catalog">
+    <hr class="hidden-sm hidden-xs" />
+    <h5>
+      <a class="catalog-toggle" href="#">CATALOG</a>
+    </h5>
+    <ul class="catalog-body"></ul>
+  </div>
+</div><link href="https://cdn.jsdelivr.net/npm/tocbot@4.10.0/dist/tocbot.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+  function generateCatalog(selector) {
+    // links page
+    if ("post" == "links") {
+      _containerSelector = "div.link-list";
+    }
+    // interop with multilangual
+    else {
+      if ("" == "true") {
+        _containerSelector = "div.post-container.active";
+      } else {
+        _containerSelector = "div.post-container";
+      }
+    }
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: selector,
+      // Where to grab the headings to build the table of contents.
+      contentSelector: _containerSelector,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: "h2, h3, h4, h5, h6",
+    });
+    return true;
+  }
+
+  generateCatalog(".catalog-body");
+
+  // toggle side catalog
+  $(".catalog-toggle").click(function (e) {
+    e.preventDefault();
+    $(".side-catalog").toggleClass("fold");
+  });
+</script>
+
       
     </div>
   </div>
