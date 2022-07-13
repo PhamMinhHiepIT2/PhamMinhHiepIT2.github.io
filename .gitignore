@@ -1,2 +1,4 @@
 .jekyll-cache/
 vendor/
+.github/
+.circleci/
