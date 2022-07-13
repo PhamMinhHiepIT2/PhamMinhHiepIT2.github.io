@@ -10,22 +10,25 @@
   <meta name="theme-color" content="#000000">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Data Analysis Tool for VF34 Car - Personal blog">
+  <meta property="og:title" content="Setup Kubernetes cluster without Ansible - Personal blog">
   
   <meta property="og:type" content="article">
-  <meta property="og:description" content="Especial tool to analyze data of autonomous car, support to research advanced technologies for VinFast car.
-This product is serving for Vinfast - One of the biggest company produces electrical vehi...">
+  <meta property="og:description" content="How to setup Kubernetes cluster with the AWS EC2 nodes RHEL/CentOS OS and without Ansible?
+In this blog, I will introduce you about installing Kubernetes cluster in REHL7 OS.
+">
   
-  <meta property="article:published_time" content="2022-07-13T07:46:38Z">
+  <meta property="article:published_time" content="2022-07-13T00:00:00Z">
   
   
+  
+  <meta property="article:tag" content="cloud">
   
   
   <meta property="og:image" content="http://localhost:4000img/header-avatar.jpeg">
-  <meta property="og:url" content="http://localhost:4000/projects/vantix-data-analysis-tools-vf34/">
+  <meta property="og:url" content="http://localhost:4000/2022/07/13/setup-kubernetes-cluster-without-ansible/">
   <meta property="og:site_name" content="Personal blog">
 
-  <title>Data Analysis Tool for VF34 Car - Personal blog</title>
+  <title>Setup Kubernetes cluster without Ansible - Personal blog</title>
 
   <!-- Web App Manifest -->
   <link rel="manifest" href="/pwa/manifest.json">
@@ -34,7 +37,7 @@ This product is serving for Vinfast - One of the biggest company produces electr
   <link rel="shortcut icon" href="/img/favicon.svg">
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="http://localhost:4000/projects/vantix-data-analysis-tools-vf34/"><!-- Bootstrap Core CSS -->
+  <link rel="canonical" href="http://localhost:4000/2022/07/13/setup-kubernetes-cluster-without-ansible/"><!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.2/dist/css/bootstrap.min.css">
 
   <!-- Fonts -->
@@ -90,6 +93,10 @@ This product is serving for Vinfast - One of the biggest company produces electr
         <i class="fas fa-chevron-up"></i>
       </div>
       
+      
+      <div class="menu-btn-child" id="menu-toc-btn">
+        <i class="fas fa-list-ul"></i>
+      </div>
       
       
       <div class="menu-btn-child" id="menu-navbar-btn">
@@ -305,7 +312,7 @@ This product is serving for Vinfast - One of the biggest company produces electr
 
 
       <!-- Image to hack wechat -->
-<!-- <img src="/" width="0" height="0"> -->
+<!-- <img src="/img/in-post/2022-07-13/kubernetes-cluster.jpeg" width="0" height="0"> -->
 
 <!-- Post Header -->
 
@@ -313,7 +320,7 @@ This product is serving for Vinfast - One of the biggest company produces electr
 <style type="text/css">
   header.intro-header{
     position: relative;
-    background-image: url('/');
+    background-image: url('/img/in-post/2022-07-13/kubernetes-cluster.jpeg');
     background: ;
   }
 
@@ -326,7 +333,7 @@ This product is serving for Vinfast - One of the biggest company produces electr
 
 
 
-<header class="intro-header style-text" >
+<header class="intro-header style-text">
 
   <div class="header-mask"></div>
   
@@ -336,8 +343,10 @@ This product is serving for Vinfast - One of the biggest company produces electr
         <div class="post-heading">
           <div class="tags">
             
+            <a class="tag" href="/archive/?tag=cloud" title="cloud">cloud</a>
+            
           </div>
-          <h1>Data Analysis Tool for VF34 Car</h1>
+          <h1>Setup Kubernetes cluster without Ansible</h1>
           
           <h2 class="subheading"></h2>
           
@@ -369,26 +378,189 @@ This product is serving for Vinfast - One of the biggest company produces electr
         <!-- Multi-Lingual -->
         
 
-        <p>Especial tool to analyze data of autonomous car, support to research advanced technologies for VinFast car.
-This product is serving for Vinfast - One of the biggest company produces electrical vehicle in VietNam and the world.</p>
+        <p>How to setup Kubernetes cluster with the AWS EC2 nodes RHEL/CentOS OS and without Ansible?
+In this blog, I will introduce you about installing Kubernetes cluster in REHL7 OS.</p>
+
+<h2 id="prerequisite">Prerequisite</h2>
+<ul>
+  <li>kubeadm</li>
+  <li>docker/containerd (container runtime)</li>
+  <li>kubectl</li>
+</ul>
+
+<h2 id="install-kubeadm-kubectl-kubelet">Install kubeadm, kubectl, kubelet</h2>
+<p>In almose cases, all you guys only want install specific kubernetes version. In my case, I need to install kubernetes version 1.22.10.
+I will guide you how to install kubernetes cluster version 1.22.10. If you want to install another version, you can modify version of kubeadm, kubectl, kubelet when you install.</p>
+
+<p>You need to install kubeadm, kubectl, kubelet in all nodes of cluster. I will do example with 1 master node and 1 worker node.
+Please bootstrap script below on each node:</p>
+
+<pre><code class="language-bash">cat &lt;&lt; EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+sudo yum update -y
+sudo yum install kubeadm-1.22.10 kubectl-1.22.10 kubelet-1.22.10
+</code></pre>
+
+<p>If you want to install another version, you can follow this below:</p>
+
+<pre><code class="language-bash">sudo yum install kubeadm-&lt;VERSION&gt; kubectl-&lt;VERSION&gt; kubelet-&lt;VERSION&gt;
+</code></pre>
+
+<p>Please note that dependencies between version of kubeadm, kubectl and kubelet.</p>
+
+<p>If you intalled latest version and want to downgrade, you can run this command:</p>
+
+<pre><code class="language-bash">sudo yum downgrade  kubeadm-&lt;VERSION&gt; kubectl-&lt;VERSION&gt; kubelet-&lt;VERSION&gt;
+</code></pre>
+
+<p>Make sure you exclude kube* packages in /etc/yum.conf by add this line to end of file /etc/yum.conf</p>
+
+<pre><code class="language-txt">exclude=kube*
+</code></pre>
+
+<h2 id="install-docker">Install Docker</h2>
+<p>In this document, I use docker as container runtime for kubernetes cluster. You can use containerd instead.</p>
+
+<p>Run script below:</p>
+
+<pre><code class="language-bash">sudo yum update -y
+sudo yum install fuse3-devel
+sudo wget http://mirror.centos.org/centos/7/extras/x86_64/Packages/fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm
+sudo yum localinstall fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm -y
+sudo wget http://mirror.centos.org/centos/7/extras/x86_64/Packages/slirp4netns-0.4.3-4.el7_8.x86_64.rpm
+sudo yum localinstall slirp4netns-0.4.3-4.el7_8.x86_64.rpm
+sudo wget http://mirror.centos.org/centos/7/extras/x86_64/Packages/container-selinux-2.107-3.el7.noarch.rpm
+sudo yum localinstall container-selinux-2.107-3.el7.noarch.rpm -y
+sudo yum install docker-ce docker-ce-cli containerd.io -y
+</code></pre>
+
+<h2 id="config-master-node">Config master node</h2>
+<p>Configure IP tables:</p>
+
+<pre><code class="language-bash">cat &lt;&lt;EOF &gt;  /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+# reload
+sudo sysctl --system
+</code></pre>
+
+<p>Update <b>sysctl</b>:</p>
+
+<pre><code class="language-bash"># if these attributes are existed, please update these value to 1 and do not append these lines below
+echo net/bridge/bridge-nf-call-iptables = 1 &gt;&gt; /etc/sysctl.conf 
+echo net/ipv4/ip_forward = 1
+</code></pre>
+
+<p>Configure cgroup driver:</p>
+
+<p>In my case, I use docker as container runtime and cgroup will be <b>cgroupfs</b>. If you use containerd as container runtime, cgroup will be <b>systemd</b></p>
+
+<p>Kubeconfig:</p>
+
+<pre><code class="language-yaml"># kubeadm-config.yaml
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: cgroupfs # Modify it to systemd if you use containerd
+containerRuntime: remote
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: InitConfiguration
+bootstrapTokens:
+- groups:
+  - system:bootstrappers:kubeadm:default-node-token
+  token: abcdef.0123456789abcdef
+  ttl: 24h0m0s
+  usages:
+  - signing
+  - authentication
+localAPIEndpoint:
+  advertiseAddress: "10.10.0.216" # Modify it with your IP of Master node
+  bindPort: 6443
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+apiServer:
+  timeoutForControlPlane: 4m0s
+  certSANs:
+    - "10.100.1.1"
+    - "10.10.0.216"  # Modify it with your IP of Master node
+clusterName: demo # Modify it if you want to change cluster name
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+networking:
+  podSubnet: "10.124.0.0/16" # Modify it so that it does not match with you subnet IP
+</code></pre>
+
+<p>Suppose that you store this kubeconfig in file $HOME/kube-config.yaml</p>
+
+<p>Init kubeadm:</p>
+
+<pre><code class="language-bash">kubeadm init --config $HOME/kube-config.yaml
+</code></pre>
+
+<p>After init successfully, you can check it:</p>
+
+<pre><code class="language-bash">kubectl get nodes
+kubectl get pods -A
+</code></pre>
+
+<p>In stdout, you will have token to join worker node. If you lose that token, you can re-generate it by:</p>
+<pre><code class="language-bash">kubectl token create --print-join-command
+</code></pre>
+
+<p>Install Container Network Interface (CNI): You can chose Flannel or Calico or anything else. In my case, I installed Flannel because it’s very simple but Canico may be best practice for almose cases.</p>
+
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml 
+</code></pre>
+
+<p>After apply this, you can see a pod running in namespace <b>kube-flannel</b></p>
+
+<pre><code class="language-bash">kubectl get pods -n kube-flannel
+</code></pre>
+
+<h2 id="configure-worker-node">Configure worker node</h2>
+<p>Make sure version of kubeadm, kubectl, kubelet is same with master node.</p>
+
+<p>Join the node to cluster:</p>
+<pre><code class="language-bash"># Join with your join command
+# This is example
+kubeadm join kubemaster.bpic.local:6443 --token cll0gw.50jagb64e80uw0da \ 
+    --discovery-token-ca-cert-hash sha256:4d699e7f06ce0e7e80b78eadc47453e465358021aee52d956dceed1dfbc0ee34
+</code></pre>
+
+<p>After join successfully, you can check:</p>
+
+<pre><code class="language-bash">kubectl get nodes
+</code></pre>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>One important thing is that version of kubeadm, kubectl, kubectl. If you have any error, please check this first.</p>
+
+<p>We completed to set up Kubernetes cluster with RHEL7 OS. And now, We try it <img class="emoji" title=":smile:" alt=":smile:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png" height="20" width="20"></p>
+
 
 
         <hr style="visibility: hidden;">
         <ul class="pager">
           
-
-          
-          <li class="next">
-            <a
-              href="/projects/vantix-data-analysis-tools-vf35/"
-              data-toggle="tooltip"
-              data-placement="top"
-              title="Data Analysis Tool for VF35, VF36 Car"
-            >
-              Next<br>
-              <span>Data Analysis Tool for VF35, VF36 Car</span>
+          <li class="previous">
+            <a href="/2022/07/11/setup-vpn-aws-ec2/" data-toggle="tooltip" data-placement="top" title="Install VPN server on AWS EC2">
+              Previous<br>
+              <span>Install VPN server on AWS EC2</span>
             </a>
           </li>
+          
+
           
         </ul>
         <hr style="visibility: hidden;">
@@ -397,7 +569,7 @@ This product is serving for Vinfast - One of the biggest company produces electr
 <section class="author-profile">
   <div class="info">
     <div class="avatar">
-      <img src="/img/header-avatar.jpeg" />
+      <img src="/img/header-avatar.jpeg">
     </div>
     <h1>Pham Minh Hiep</h1>
   </div>
@@ -406,7 +578,7 @@ This product is serving for Vinfast - One of the biggest company produces electr
       <i class="fas fa-pencil-alt"></i>
     </a>
     <p id="poem-item">作诗中...</p>
-    <br />
+    <br>
     <p id="poem-info"></p>
   </span>
 </section>
@@ -457,7 +629,8 @@ This product is serving for Vinfast - One of the biggest company produces electr
 <!----------------- Gitalk ----------------->
 <div class="comment">
   <div id="gitalk-container"></div>
-</div><script type="text/javascript">
+</div>
+<script type="text/javascript">
   var gitalk = new Gitalk({
     clientID: "faf464da633b08ff5317",
     clientSecret: "402324fc860894e5fcba6320fddbddd1ec7f5644",
@@ -478,6 +651,54 @@ This product is serving for Vinfast - One of the biggest company produces electr
 
       <!-- Side Catalog Container -->
       
+        <!-- Side Catalog Container -->
+<div class="col-lg-2 col-lg-offset-0 sidebar-container catalog-container">
+  <div class="side-catalog">
+    <hr class="hidden-sm hidden-xs">
+    <h5>
+      <a class="catalog-toggle" href="#">CATALOG</a>
+    </h5>
+    <ul class="catalog-body"></ul>
+  </div>
+</div>
+<link href="https://cdn.jsdelivr.net/npm/tocbot@4.10.0/dist/tocbot.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+  function generateCatalog(selector) {
+    // links page
+    if ("post" == "links") {
+      _containerSelector = "div.link-list";
+    }
+    // interop with multilangual
+    else {
+      if ("" == "true") {
+        _containerSelector = "div.post-container.active";
+      } else {
+        _containerSelector = "div.post-container";
+      }
+    }
+
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: selector,
+      // Where to grab the headings to build the table of contents.
+      contentSelector: _containerSelector,
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: "h2, h3, h4, h5, h6",
+    });
+    return true;
+  }
+
+  generateCatalog(".catalog-body");
+
+  // toggle side catalog
+  $(".catalog-toggle").click(function (e) {
+    e.preventDefault();
+    $(".side-catalog").toggleClass("fold");
+  });
+</script>
+
+      
     </div>
   </div>
 </article>
@@ -485,7 +706,7 @@ This product is serving for Vinfast - One of the biggest company produces electr
 <!-- add support for mathjax by voleking-->
 
   
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
 
 <script>
@@ -660,9 +881,10 @@ This product is serving for Vinfast - One of the biggest company produces electr
 </div>
  -->
         <p class="copyright">
-          &copy; <a href="https://github.com/PhamMinhHiepIT2" target="_blank">Pham Minh Hiep</a> 2022
+          © <a href="https://github.com/PhamMinhHiepIT2" target="_blank">Pham Minh Hiep</a> 2022
           <br>
-      </div>
+      </p>
+</div>
     </div>
   </div>
 </footer>
@@ -918,13 +1140,7 @@ This product is serving for Vinfast - One of the biggest company produces electr
   <p class="search-title text-center"></p>
 
   <div class="input">
-    <input
-      id="search-input"
-      type="text"
-      class="search-field"
-      placeholder="Just search ..."
-      style="background-color: transparent"
-    />
+    <input id="search-input" type="text" class="search-field" placeholder="Just search ..." style="background-color: transparent">
   </div>
   <div id="search-results" class="search-results"></div>
 </div>
