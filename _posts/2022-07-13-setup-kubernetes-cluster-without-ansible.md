@@ -93,8 +93,8 @@ Update <b>sysctl</b>:
 
 ```bash
 # if these attributes are existed, please update these value to 1 and do not append these lines below
-echo net/bridge/bridge-nf-call-iptables = 1 >> /etc/sysctl.conf 
-echo net/ipv4/ip_forward = 1
+sudo echo net.bridge.bridge-nf-call-iptables = 1 >> /etc/sysctl.conf 
+sudo echo net.ipv4.ip_forward = 1 /etc/sysctl.conf 
 ```
 
 Configure cgroup driver:
