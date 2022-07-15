@@ -137,10 +137,10 @@ comment:
 # Analytics settings
 analytics:
   # Baidu Analytics
-  ba_track_id: 00504d7a0bf51278aa92b36e60e830b5 # [your baidu track id]
+  ba_track_id: "" # [your baidu track id]
 
   # Google Analytics
-  ga_track_id: "G-ZYM02DSEHS" # [your google track id]
+  ga_track_id: "G-85QW3SQBZ1" # [your google track id]
 
 # Progressive Web Apps
 chrome-tab-theme-color: "#000000"
