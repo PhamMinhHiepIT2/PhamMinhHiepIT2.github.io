@@ -1,6 +1,8 @@
 # Personal Blog
 This is my personal blog. I will write everything I learned about <b>DevOps</b>. But maybe in the future, many fields will be updated in this blog.
 
+## Preview
+Please click to URL: https://phamminhhiepit2.github.io/
 
 ## Base theme
 
